@@ -12,6 +12,8 @@ class Mainscreen extends StatefulWidget {
 
 class _MainscreenState extends State<Mainscreen> {
   String ip = 'Your IP Address';
+  String region = 'Region';
+  String provider = 'Internet Anbieter';
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +23,21 @@ class _MainscreenState extends State<Mainscreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(ip),
+            const SizedBox(height: 8),
+            Text(region),
+            const SizedBox(height: 8),
+            Text(provider),
             const SizedBox(height: 16),
             OutlinedButton(
               onPressed: () async {
-                final response = await get(
-                    Uri.parse('https://ipinfo.io/161.185.160.93/geo'));
+                final response = await get(Uri.parse('https://ipinfo.io/geo'));
 
                 Map<String, dynamic> m = jsonDecode(response.body);
 
                 setState(() {
                   ip = m['ip'];
+                  region = m['region'];
+                  provider = m['org'];
                 });
               },
               child: const Text('Refresh API'),
