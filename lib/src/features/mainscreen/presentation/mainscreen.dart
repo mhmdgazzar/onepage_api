@@ -24,8 +24,8 @@ class _MainscreenState extends State<Mainscreen> {
             const SizedBox(height: 16),
             OutlinedButton(
               onPressed: () async {
-                final response =
-                    await get(Uri.parse('api.ipify.org/?format=json'));
+                final response = await get(
+                    Uri.parse('https://ipinfo.io/161.185.160.93/geo'));
 
                 Map<String, dynamic> m = jsonDecode(response.body);
 
